@@ -13,7 +13,23 @@ const scores = Array.from({ length: 20 }, () => Math.floor(Math.random() * 101))
 console.log("start:", scores);
 
 // (a)
+const odd = scores.filter((score) => score % 2 !== 0);
+console.log("odd:", odd);
+
+const doubled = odd.map((score) => score * 2);
+console.log("doubled:", doubled);
+
+const sorted = doubled.sort((a, b) => b - a);
+console.log("sorted:", sorted);
+
+const half = sorted.slice(0, Math.ceil(sorted.length / 2));
+console.log("first half:", half);
 
 // (b)
+const result = scores.filter((score) => score % 2 !== 0).map((score) => score * 2).sort((a, b) => b - a).slice(0, Math.ceil(sorted.length / 2));
+console.log("result:", result);
 
 // (c)
+console.log("original scores:", scores);
+// original scores are still the same
+// because the methods(filter, map, sort, slice) don't modify the original array. instead they return a new array.
