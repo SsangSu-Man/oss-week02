@@ -25,6 +25,8 @@
 //   rl.on("close", f)  runs f once, after you type q (which calls rl.close())
 // So: collect lines in the "line" handler, do the work in the "close" handler.
 
+import Inko from "inko";
+const inko = new Inko();
 import readline from "node:readline";
 
 // TODO: import Inko from "inko" and create an instance
@@ -53,4 +55,13 @@ rl.on("close", () => {
   //   1. 오픈 소스
   //   2. 깃허브 노드
   // Use ko2en instead of en2ko when reverse is true.
+
+  lines
+    .filter((line) => line !== "")
+    .map((line, i) => {
+      return reverse ? inko.ko2en(line) : inko.en2ko(line);
+    })
+    .forEach((convert, i) => {
+      console.log(`${i + 1}. ${convert}`);
+    });
 });
